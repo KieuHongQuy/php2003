@@ -1,0 +1,28 @@
+RewriteEngine On
+DirectoryIndex index.php
+ErrorDocument 400     /400.php
+ErrorDocument 401     /401.php
+ErrorDocument 403     /403.php
+ErrorDocument 404     /404.php
+ErrorDocument 500     /500.php
+
+RewriteRule ^admin$ http://%{HTTP_HOST}/dangky/admin/index.php [L,R=301]
+RewriteRule ^admin/$ http://%{HTTP_HOST}/dangky/admin/index.php [L,R=301]
+
+RewriteRule ^tim-kiem/(.*)&([=a-zA-Z0-9]+)$ index.php?controller=tim-kiem&name=$1&page=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)&([=a-zA-Z0-9]+)$ index.php?controller=$1&idlist=$2&idcat=$3&iditem=$4&page=$5 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)&([=a-zA-Z0-9]+)$ index.php?controller=$1&idlist=$2&idcat=$3&page=$4 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)&([=a-zA-Z0-9]+)$ index.php?controller=$1&idlist=$2&page=$3 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html&([=a-zA-Z0-9]+)$ index.php?controller=$1&ten=$2&page=$3 [L]
+
+RewriteRule ^tim-kiem/(.*)$ index.php?controller=tim-kiem&name=$1 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?controller=$1&idlist=$2&idcat=$3&iditem=$4 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?controller=$1&idlist=$2&idcat=$3 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?controller=$1&idlist=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)-([0-9]+).html$ index.php?controller=$1&ten=$2&id=$3 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html$ index.php?controller=$1&ten=$2 [L]
+RewriteRule ^([a-zA-Z0-9_-]+).html$ index.php?controller=all&ten=$1 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)&([=a-zA-Z0-9]+)$ index.php?controller=$1&page=$2 [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?controller=$1 [L]
+

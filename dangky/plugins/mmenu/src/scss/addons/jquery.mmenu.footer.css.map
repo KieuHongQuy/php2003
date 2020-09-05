@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;EAEE;AAKF,AAAA,UAAU,CACV;EACC,UAAU,EAAE,OAAO;EACnB,UAAU,EAAE,qBAAqB;EACjC,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,IAAsC;EAEnD,UAAU,EAAE,UAAU;EACtB,KAAK,EAAE,IAAI;EACX,MAAM,ECHQ,IAAI;EDIlB,OAAO,ECHO,IAAI,CAAJ,IAAI,CDGe,CAAC,CAAC,IAAmB;EACtD,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,IAAI,EAAE,CAAC;CACP;;AAED,AAEC,QAFO,AAAA,aAAa,GAElB,SAAS,AAAA,MAAM,CACjB;EACC,MAAM,EAAE,IAA8B;CACtC;;AIuFD,AAEC,QAFO,CAEP,UAAU,CACV;EACC,YAAY,EH7EO,mBAAqB;EG8ExC,KAAK,EHzEiB,wBAA0B;CG0EhD",
+    "sources": [
+        "jquery.mmenu.footer.scss",
+        "../inc/_variables.scss",
+        "../inc/_mixins.scss",
+        "../inc/_sizing.scss",
+        "../inc/_colors.scss"
+    ],
+    "names": [],
+    "file": "jquery.mmenu.footer.css"
+}

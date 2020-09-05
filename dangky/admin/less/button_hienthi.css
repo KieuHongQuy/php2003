@@ -1,0 +1,93 @@
+/*button show*/
+/*on-off*/
+.imgitem{
+    display: flex;
+    flex-wrap: wrap;
+}
+div.item_trich {
+    border: 1px solid #000;
+    margin-top: 10px;
+    box-sizing: border-box;
+    margin:5px;
+    padding: 5px;
+    position: relative;
+}
+@media screen and (max-width: 1366px){
+.item_trich {
+    width: calc(100% / 4);
+}
+div.item_trich .img_trich {
+    max-width: 100%;
+    float: left;
+    background: #FFF;
+}
+.item_trich input{
+    font-size: 12px;
+    padding: 7px 6px;
+    background: white;
+    border: 1px solid #DDD;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 0 2px #f4f4f4;
+    -webkit-box-shadow: 0 0 0 2px #f4f4f4;
+    -moz-box-shadow: 0 0 0 2px #f4f4f4;
+    color: #656565;
+    box-sizing: border-box;
+}
+div.item_trich a.delete_images {
+    position: absolute;
+    color: #333 !important;
+    font-size: 15px;
+    right: 16px;
+    bottom: 13px;
+}
+.diamondToggle{
+	background: #D33331;
+    padding: 1px;
+    display: inline-block;
+    width: 45px;
+    height: 17px;
+    position: relative;
+    cursor: pointer;
+    -o-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.diamondToggle:before{
+	content: 'OFF';
+    position: absolute;
+    top:24%;
+    right: 5%;
+    color: #FFF;
+    font-size: 9px;
+}
+.diamondToggle:after{
+	content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #DDD;
+    transition: all 0.1s ease-in .1s;
+    left: 0px;
+    top: 0px;
+}
+.diamondToggle.diamondToggleOff{
+	background-color:#3672A0;
+}
+.diamondToggle.diamondToggleOff:before{
+    content: 'ON';
+    position: absolute;
+    color: #FFF;
+    top: 24%;
+    left: 14%;
+    font-size: 9px;
+    text-shadow: 0 1px rgba(255,255,255,0.5);
+    text-align: left;
+}
+.diamondToggle.diamondToggleOff:after{
+	left:27px;
+}
+/*end on-off*/
+/*button show*/
