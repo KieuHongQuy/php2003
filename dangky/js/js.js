@@ -213,7 +213,6 @@ $(document).ready(function(){
     }
   });
   $('#btn-order-submit').click(function() {
-
 		var error = true;
 		var hoten = $('#hoten').val();
 		var diachi = $('#diachi').val();
@@ -265,5 +264,90 @@ $(document).ready(function(){
 		}else{
 			return false;
 		}
-	});
+  });
+  
+  $('#btn-thongtin').click(function() {
+		var error = true;
+    var dienthoai = $('#dienthoai').val();
+		var email = $('#email').val();
+    if(!validatePhone(dienthoai)){
+      error = true;
+      alert('Điện thoại không đúng định dạng');
+      return false;
+    }else{
+      error = false;
+    }
+    if(!validateEmail(email)){
+      error = true;
+      alert('Email không đúng định dạng');
+      return false;
+    }else{
+      error = false;
+    }
+		if(error == false){
+			$('#form-thongtin').submit();
+		}else{
+			return false;
+		}
+  });
+  $('#btn-dk').click(function() {
+		var error = true;
+    var username = $('#username').val();
+		var password = $('#password').val();
+    if(username==''){
+			error = true;
+			alert('Quý khách chưa nhập tài khoản');
+			return false;
+		}else{
+			error = false;
+    }
+    if(password==''){
+			error = true;
+			alert('Quý khách chưa nhập password');
+			return false;
+		}else{
+			error = false;
+		}
+		if(error == false){
+			$('#form-dk').submit();
+		}else{
+			return false;
+		}
+  });
+  $('#btn-ycau').click(function() {
+		var error = true;
+    var username = $('#username').val();
+    if(username==''){
+			error = true;
+			alert('Quý khách chưa nhập tài khoản');
+			return false;
+		}else{
+			error = false;
+    }
+		if(error == false){
+			$('#form-dk').submit();
+		}else{
+			return false;
+		}
+  });
+  
 });
+function checkValue(){
+  if($('#password').val() == ''){
+    alert('Chưa nhập mật khẩu mới');
+    $('#password').focus();
+    return false;	
+  }
+  if($('#repass').val() == ''){
+    alert('Chưa nhập lại mật khẩu');
+    $('#repass').focus();
+    return false;	
+  }
+
+  if($('#repass').val() != $('#password').val()){
+    alert('Mật khẩu mới và mật khẩu xác nhận chưa trùng khớp');
+    $('#repass').focus();
+    return false;	
+  }
+  document.frm_re_pass.submit();
+}

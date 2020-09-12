@@ -8,7 +8,6 @@
             <?php
 				echo (count($data['data']['list']))? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'"><button class="ctg">'.$data['data']['list']['ten'].'</button></a></li>' : "";
                 echo (count($data['data']['cat'])) ? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'/'.$data['data']['cat']['tenkhongdau'].'"><button class="ctg">'.$data['data']['cat']['ten'].'</button></a></li>': "";
-                echo (count($data['data']['item'])) ?'<li><a href="product/'.$data['data']['list']['tenkhongdau'].'/'.$data['data']['cat']['tenkhongdau'].'/'.$data['data']['item']['tenkhongdau'].'"><button class="ctg">'.$data['data']['item']['ten'].'</button></a></li>' : "";
             ?>
             <li><a></a></li>
         </ul>

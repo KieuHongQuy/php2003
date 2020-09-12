@@ -58,9 +58,6 @@
                             <a class="<?=($_GET['controller'] == 'product' && $_GET['action']=='allcat')? 'action':''?>" href="index.php?controller=product&action=allcat">Danh mục sản phẩm 2</a>
                         </li>
                         <li>
-                            <a class="<?=($_GET['controller'] == 'product' && $_GET['action']=='allitem')? 'action':''?>" href="index.php?controller=product&action=allitem">Danh mục sản phẩm 3</a>
-                        </li>
-                        <li>
                             <a class="<?=($_GET['controller'] == 'product' && $_GET['action']=='allproduct')? 'action':''?>" href="index.php?controller=product&action=allproduct"> Danh sách sản phẩm</a>
                         </li>
                     </ul>
@@ -68,6 +65,10 @@
                 </li>
                 <li>
                     <a class="<?=($_GET['controller'] == 'post')? 'action':''?>" href="index.php?controller=post&action=edit"><i class="fa fa-cube fa-fw"></i> Thông tin công ty<span class="fa arrow"></span></a>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a class="<?=($_GET['controller'] == 'user')? 'action':''?>" href="index.php?controller=user&action=alluser"><i class="fa fa-cube fa-fw"></i> Danh sách username<span class="fa arrow"></span></a>
                     <!-- /.nav-second-level -->
                 </li>
                <!-- <li>

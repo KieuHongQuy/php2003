@@ -6,19 +6,15 @@
                     <a href="product/<?=$value['tendm1']['tenkhongdau']?>"><?=$value['tendm1']['ten']?></a>
                     <?php if(count($dsmenu[$key]['danhmuc2'])){?>
                         <div class="slider-menu">
-                        <ul>
-                        <?php foreach($dsmenu[$key]['danhmuc2'] as $keysub => $valuesub){?>   
-                            <li><a href="product/<?=$value['tendm1']['tenkhongdau']?>/<?=$valuesub['tenkhongdau']?>"><?=$valuesub['ten']?></a>          
-                                <?php if(count($dsmenu[$key]['danhmuc3'][$keysub])){?>
+                            <ul>
+                                <li><a href="product/<?=$value['tendm1']['tenkhongdau']?>"><?=$value['tendm1']['ten']?></a>         
                                     <ul>
-                                        <?php foreach($dsmenu[$key]['danhmuc3'][$keysub] as $keysup => $valuesup){?>
-                                            <li><a href="product/<?=$value['tendm1']['tenkhongdau']?>/<?=$valuesub['tenkhongdau']?>/<?=$valuesup['tenkhongdau']?>"><?=$valuesup['ten']?></a></li>
+                                        <?php foreach($dsmenu[$key]['danhmuc2'] as $keysub => $valuesub){?>
+                                            <li><a href="product/<?=$value['tendm1']['tenkhongdau']?>/<?=$valuesub['tenkhongdau']?>"><?=$valuesub['ten']?></a></li>
                                         <?php }?>
-                                    </ul>
-                                <?php }?>    
-                            </li>
-                         <?php }?>
-                        </ul> 
+                                    </ul> 
+                                </li>
+                            </ul> 
                         </div>                    
                     <?php }?>
                 </li>

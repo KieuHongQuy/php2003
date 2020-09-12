@@ -63,7 +63,7 @@
         public function insertData($table,$data){
             $key = implode("','", $data);
             $value = implode(",",array_keys($data));
-        	$sql = "INSERT INTO ".$table."(".$value.") VALUES ('".$key."')";
+            $sql = "INSERT INTO ".$table."(".$value.") VALUES ('".$key."')";
             $this->query($sql);
             return mysqli_insert_id($this->connection);
         }
@@ -74,10 +74,8 @@
                 $set .= $key."='".$val."',";
             }
             $set{strlen($set)-1} = ' ';
-            //var_dump($set);
             $dk = "Where 1=1 and ".$where;
             $sql = "UPDATE ".$table." SET ".$set." ".$dk;
-            //var_dump("UPDATE ".$table." SET ".$set." ".$dk);
         	return $this->query($sql);
         }
 

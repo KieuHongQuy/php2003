@@ -22,10 +22,5 @@
             $dsmenu[$ds[$key]['id_list']]["danhmuc2"][$ds[$key]['id_cat']]['tenkhongdau'] =  $ds[$key]['tkdcat'];
             
         }
-        if(!isset($dsmenu[$ds[$key]['id_list']]["danhmuc3"][$ds[$key]['id_cat']][$ds[$key]['id_item']])){
-            $dsmenu[$ds[$key]['id_list']]["danhmuc3"][$ds[$key]['id_cat']][$ds[$key]['id_item']]['ten'] =  $ds[$key]['tenitem'];
-            $dsmenu[$ds[$key]['id_list']]["danhmuc3"][$ds[$key]['id_cat']][$ds[$key]['id_item']]['tenkhongdau'] =  $ds[$key]['tkditem'];
-        }
-    }
-    
+    }  
 ?>

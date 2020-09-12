@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Category
+                <h1 class="page-header">Chi tiết đơn hàng
                     <small>Edit</small>
                 </h1>
             </div>

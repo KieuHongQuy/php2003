@@ -6,10 +6,9 @@
 			$model = new product();
 			$idlist = (isset($_GET['idlist']))? addslashes($_GET['idlist']) : "";
 			$idcat = (isset($_GET['idcat']))? addslashes($_GET['idcat']) : "";
-			$iditem =(isset($_GET['iditem']))? addslashes($_GET['iditem']) : "";
 			$page = explode("=",$_GET['page']);
 			$pageURL = explode("&page=", $_SERVER["REQUEST_URI"]);
-			$data = $model ->getAllProduct($idlist,$idcat,$iditem,$page['1'],$this->phantrang); 
+			$data = $model ->getAllProduct($idlist,$idcat,$page['1'],$this->phantrang); 
 			return [
 				'data' => $data,
 				'page' => $page['1'],

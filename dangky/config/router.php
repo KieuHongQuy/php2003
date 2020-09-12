@@ -12,6 +12,48 @@
 			$controllerObject = new indexMain();
 			$action = 'connect';
 			break;
+		case 'dang-nhap':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'login';
+			break;
+		case 'dang-xuat':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'logout';
+			break;
+		case 'mat-khau':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'password';
+			break;
+		case 'dang-ky':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'dangky';
+			break;
+		case 'quen-mat-khau':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'quenmatkhau';
+			break;
+		case 'thong-tin':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'thongtin';
+			break;
+		case 'update-form':
+			$controller = 'user';
+			include_once './controller/'.$controller.'.php';
+			$controllerObject = new userMain();
+			$action = 'update';
+			break;
 		case 'tim-kiem':
 			$controller = 'product';
 			include_once './controller/'.$controller.'.php';
@@ -59,3 +101,4 @@
 	}
 	$data = $controllerObject->{ $action }();
 ?>
+

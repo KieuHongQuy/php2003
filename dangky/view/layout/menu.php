@@ -13,15 +13,11 @@
                     <li>
                         <a href="product/<?=$value['tendm1']['tenkhongdau']?>"><?=$value['tendm1']['ten']?></a>
                         <?php if(count($dsmenu[$key]['danhmuc2'])){?>
+                            <ul>
                             <?php foreach($dsmenu[$key]['danhmuc2'] as $keysub => $valuesub){?>                                
-                                <?php if(count($dsmenu[$key]['danhmuc3'][$keysub])){?>
-                                    <ul>
-                                        <?php foreach($dsmenu[$key]['danhmuc3'][$keysub] as $keysup => $valuesup){?>
-                                            <li><a href="product/<?=$value['tendm1']['tenkhongdau']?>/<?=$valuesub['tenkhongdau']?>/<?=$valuesup['tenkhongdau']?>"><?=$valuesup['ten']?></a></li>
-                                        <?php }?>
-                                    </ul>
-                                <?php }?>
-                            <?php }?>                       
+                                <li><a href="product/<?=$value['tendm1']['tenkhongdau']?>/<?=$valuesub['tenkhongdau']?>"><?=$valuesub['ten']?></a></li>
+                            <?php }?> 
+                            </ul>                      
                         <?php }?>
                     </li>
                 <?php }?>

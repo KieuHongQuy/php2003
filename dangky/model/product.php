@@ -16,7 +16,7 @@
 				"sum"=>$tong
 			];
 		}
-		public function getAllProduct($tenlist,$tencat,$tenitem,$page,$n) {
+		public function getAllProduct($tenlist,$tencat,$page,$n) {
 			if($tenlist != ''){
 				$this->connect->query('select * from product_list where tenkhongdau ="'.$tenlist.'"');
 				$list = $this->connect->fetch_array();
@@ -25,11 +25,6 @@
 					$this->connect->query('select * from product_cat where id_list='.$list['id'].' and tenkhongdau="'.$tencat.'"');
 					$cat = $this->connect->fetch_array();
 					$where.=  ($cat) ?' and id_cat='.$cat['id'] : ($where="");
-					if($tenitem != '' && $cat){
-						$this->connect->query('select * from product_item where id_list='.$list['id'].' and id_cat='.$cat['id'].' and tenkhongdau="'.$tenitem.'"');
-						$item = $this->connect->fetch_array();
-						$where.= ($item) ? ' and id_item='.$item['id'] : ($where="");
-					}
 				}
 				$this->connect->query('select * from product '.$where.'');
 				$allProduct = $this->connect->result_array();
@@ -42,7 +37,6 @@
 					'list' => $list,
 					'cat' => $cat,
 					'page' => $soluong['sum'],
-					'item' => $item
 				];
 			}else{
 				$this->connect->query('select * from product '.$where.'');
@@ -71,16 +65,11 @@
 				$this->connect->query('select * from product_cat where id ="'.$product['id_cat'].'"');
 				$cat = $this->connect->fetch_array();
 			}
-			if($product['id_item']){
-				$this->connect->query('select * from product_item where id ="'.$product['id_item'].'"');
-				$item = $this->connect->fetch_array();
-			}
 			return [
 				'imgList' => $imgList,
 				'product' => $product,
 				'list' => $list,
 				'cat' => $cat,
-				'item' => $item
 			];
 		}
 		public function getProductSub($ten,$page,$n) {

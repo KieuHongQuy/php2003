@@ -15,12 +15,12 @@
         case 'product':
             $controllerObject = new productMain();
             break;
+        case 'user':
+            $controllerObject = new userMain();
+            break;
         default:
 			header('Location: http://'._config_url.'');
 			break;
     }
         $data = $controllerObject->{ $action }();
 ?>
-<!-- <pre>
-<?php var_dump($data['id_cat']);?>
-</pre> -->

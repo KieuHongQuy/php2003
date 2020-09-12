@@ -43,21 +43,21 @@
 								<div class="row-order-form">
 									<label>Họ và tên</label>
 									<div class="row-input">
-										<input type="text" class="text-order" name="hoten" id="hoten" value="<?=$_SESSION['logging']['hoten']?>" placeholder="Ví dụ: Nguyễn Văn Nam">
+										<input type="text" class="text-order" name="hoten" id="hoten" value="<?=$_SESSION['user']['hoten']?>" placeholder="Ví dụ: Nguyễn Văn Nam">
 										<p class="error-text cl-red"></p>
 									</div>
 								</div>
 								<div class="row-order-form">
 									<label>Số điện thoại</label>
 									<div class="row-input">
-										<input type="text" class="text-order" name="dienthoai" id="dienthoai" value="<?=$_SESSION['logging']['dienthoai']?>" placeholder="Ví dụ: 0986688688">
+										<input type="text" class="text-order" name="dienthoai" id="dienthoai" value="<?=$_SESSION['user']['dienthoai']?>" placeholder="Ví dụ: 0986688688">
 										<p class="error-text cl-red"></p>
 									</div>
 								</div>
 								<div class="row-order-form">
 									<label>Email</label>
 									<div class="row-input">
-										<input type="text" class="text-order" name="email" id="email" value="<?=$_SESSION['logging']['email']?>" placeholder="Ví dụ: nguyenvana@gmail.com">
+										<input type="text" class="text-order" name="email" id="email" value="<?=$_SESSION['user']['email']?>" placeholder="Ví dụ: nguyenvana@gmail.com">
 										<p class="error-text cl-red"></p>
 									</div>
 								</div>

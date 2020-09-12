@@ -6,21 +6,15 @@
             <?php
                 if(count($data['data']['name'])){
                     echo '<li><a href="product/'.$_GET['ten'].'.html"><button class="ctg">'.$data['data']['name'].'</button></a></li>';
-                }else{
-                    if(count($data['data']['item'])){
+                }else{  
+                    if(count($data['data']['cat'])){
                         echo (count($data['data']['list']))? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'"><button class="ctg">'.$data['data']['list']['ten'].'</button></a></li>' : "";
-                        echo (count($data['data']['cat'])) ? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'/'.$data['data']['cat']['tenkhongdau'].'"><button class="ctg">'.$data['data']['cat']['ten'].'</button></a></li>': "";
-                        echo (count($data['data']['item'])) ?'<li><a href="product/'.$data['data']['list']['tenkhongdau'].'/'.$data['data']['cat']['tenkhongdau'].'/'.$data['data']['item']['tenkhongdau'].'"><button class="ctg">'.$data['data']['item']['ten'].'</button></a></li>' : "";
+                        echo (count($data['data']['cat'])) ? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'/'.$data['data']['cat']['tenkhongdau'].'"><button class="ctg">'.$data['data']['cat']['ten'].'</button></a></li>' : "";
                     }else{
-                        if(count($data['data']['cat']) && !$_GET['iditem']){
+                        if(count($data['data']['list']) && !$_GET['idcat']){
                             echo (count($data['data']['list']))? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'"><button class="ctg">'.$data['data']['list']['ten'].'</button></a></li>' : "";
-                            echo (count($data['data']['cat'])) ? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'/'.$data['data']['cat']['tenkhongdau'].'"><button class="ctg">'.$data['data']['cat']['ten'].'</button></a></li>' : "";
-                        }else{
-                            if(count($data['data']['list']) && !$_GET['idcat'] && !$_GET['iditem']){
-                                echo (count($data['data']['list']))? '<li><a href="product/'.$data['data']['list']['tenkhongdau'].'"><button class="ctg">'.$data['data']['list']['ten'].'</button></a></li>' : "";
-                            }
                         }
-                    }  
+                    }
                 }          
             ?>
             <li><a></a></li>

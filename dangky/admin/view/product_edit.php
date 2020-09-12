@@ -1,3 +1,24 @@
+<script>
+	$(document).ready(function() {
+        $('.delete_images').click(function(){
+	      if (confirm('Bạn có muốn xóa hình này ko ? ')) {
+            var id = $(this).attr('title');
+            var controller = 'productajax';
+            var action = 'xoaimg';
+            var table = 'product_img';
+	        $.ajax ({
+	          type: "GET",
+	          url: "ajax/ajax.php",
+	          data: {id:id,controller:controller,action:action,table:table},
+	          success: function(result) {
+	          }
+	        });
+	        $(this).parent().slideUp();
+	      }
+	      return false;
+	    });
+    });
+</script>
 <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -26,19 +47,10 @@
                             <div class="formx">
                             <div class="form-group">
                                 <label>Danh mục cấp 2</label>
-                                <select id="id_cat" class="conso form-control" name="id_cat" onchange="onchangecat()">
+                                <select id="id_cat" class="conso form-control" name="id_cat">
                                     <option value="0">Danh mục cấp 2</option>
                                     <?php foreach($data['id_cat'] as $val){?>
                                         <option value="<?=$val['id']?>" <?=($val['id']==$data['data']['id_cat'])? 'selected': ""?>><?=$val['ten']?></option>
-                                    <?php }?>
-                                </select>
-                            </div>
-                            <div class="form-group" id="id_item">
-                                <label>Danh mục cấp 3</label>
-                                <select id="id_item" class="conso form-control" name="id_item">
-                                    <option value="0">Danh mục cấp 3</option>
-                                    <?php foreach($data['id_item'] as $val){?>
-                                        <option value="<?=$val['id']?>" <?=($val['id']==$data['data']['id_item'])? 'selected': ""?>><?=$val['ten']?></option>
                                     <?php }?>
                                 </select>
                             </div>
@@ -73,15 +85,6 @@
                                 <textarea title="Nhập nội dung" id="giaohang"  class="ck_editors" name="giaohang"><?=@$data['data']['giaohang']?></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Product Status</label>
-                                <label class="radio-inline">
-                                    <input name="submit" value="1" checked="" type="radio">Visible
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="2" type="radio">Invisible
-                                </label>
-                            </div>
-                            <div class="form-group">
                             <a class="file_input" data-jfiler-name="files" data-jfiler-extensions="jpg, jpeg, png, gif">
                                 <div class="jFiler jFiler-theme-dragdropbox"><div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Upload files here</h3></div><span class="jFiler-input-choose-btn btn-custom blue-light">Browse Files</span></div></div></div>
                             </a>
@@ -107,4 +110,4 @@
             <!-- /.container-fluid -->
         </div>
 
-        
+      

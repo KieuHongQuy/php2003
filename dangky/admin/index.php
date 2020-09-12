@@ -1,7 +1,9 @@
 <?php 
     session_start();
     $config_url=$_SERVER["SERVER_NAME"].':8080/dangky/admin';
+    $config_tc=$_SERVER["SERVER_NAME"].':8080/dangky';
     @define("_config_url",$config_url);
+    @define("_config_tc",$config_tc);
     include_once "../config/classdatabase.php";
     include_once "./controller/custom.php";
     include_once "./routeradmin.php";
@@ -23,6 +25,7 @@
     <link href="less/button_hienthi.css" rel="stylesheet">
     <link href="js/multiupload/css/jquery.filer.css" type="text/css" rel="stylesheet" />
     <link href="js/multiupload/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body>
@@ -34,7 +37,6 @@
     <?php }else{?>
         <?php include "./view/".$data['view'].".php"?>
     <?php }?>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="js/multiupload/jquery.filer.min.js"></script>
     <script src="js/js.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -70,9 +72,7 @@
 			});
 
 		});
-
 	});
-	
 </script>
 <script>
   $(document).ready(function() {

@@ -4,39 +4,91 @@
 		public function __construct(){
 			$this->connect = new database();
 		}
-		public function listProduct(){
+		public function getPage($sum){
+			$n = 10;
+			if($_GET['page'] < 1){
+				$page = 1;
+			}else{
+				$page = $_GET['page'];
+			}
+			if($page > 0){
+				$a = ($page -1) * $n;
+			}else{
+				$a = 0;
+			}
+			$tong = ceil($sum/$n);
+			return [
+				"page"=>$a,
+				"sum"=>$tong
+			];
+		}
+		public function dsList(){
 			$this->connect->query('select * from product_list order by id desc');
-			return $this->connect->result_array();
+			return [
+					'product' => $this->connect->result_array(),
+			];
 		}
-		public function catId($id){
-			$this->connect->query('select * from product_cat where id_list='.$id);
-			return $this->connect->result_array();
-		}
-		public function catProduct(){
-			$this->connect->query('select * from product_cat order by id desc');
-			return $this->connect->result_array();
-		}
-		public function itemId($id,$idcat){
-			$this->connect->query('select * from product_item where id_list= '.$id.' and id_cat ='.$idcat);
-			var_dump('select * from product_item where id_list= '.$id.' and id_cat ='.$idcat.'');
-			return $this->connect->result_array();
-		}
-		public function itemProduct(){
-			$this->connect->query('select * from product_item order by id desc');
-			return $this->connect->result_array();
-		}
-        public function allProduct(){
-			$this->connect->query('select * from product order by id desc');
-			return $this->connect->result_array();
-		}
-		public function deleteProduct($table,$id){
-            $this->connect->deleteData($table,$id);
-			return true;
+		public function listProduct(){
+			if($_GET['keyword'] != ''){
+				$where = "where ten like '%".$_GET['keyword']."%'" ;
+			}
+			$this->connect->query('select * from product_list '.$where.' order by id desc');
+			$allProduct = $this->connect->result_array();
+			$soluong = $this->getPage(count($allProduct));
+			$limit = 'limit '.$soluong['page'].',10';
+			$this->connect->query('select * from product_list '.$where.'  order by id desc '.$limit.'');
+			return [
+					'product' => $this->connect->result_array(),
+					'page' => $soluong['sum']
+			];
 		}
 		public function editProductList($table,$where){
 			$this->connect->query('select * from '.$table.' where 1=1 and '.$where.'');
 			return $this->connect->fetch_array();
 		}  
+		public function catId($id){
+			$this->connect->query('select * from product_cat where id_list='.$id);
+			return $this->connect->result_array();
+		}
+		public function catProduct(){
+			if($_GET['keyword'] != ''){
+				$where = "where ten like '%".$_GET['keyword']."%'" ;
+			}
+			$this->connect->query('select * from product_cat '.$where.' order by id desc');
+			$allProduct = $this->connect->result_array();
+			$soluong = $this->getPage(count($allProduct));
+			$limit = 'limit '.$soluong['page'].',10';
+			$this->connect->query('select * from product_cat '.$where.'  order by id desc '.$limit.'');
+			return [
+					'product' => $this->connect->result_array(),
+					'page' => $soluong['sum']
+			];
+		}
+        public function allProduct(){
+			$where = "where 1=1";
+			if($_GET['keyword'] != ''){
+				$where.= " and ten like '%".$_GET['keyword']."%' or masp like '%".$_GET['keyword']."%'" ;
+			}
+			if($_GET['id_list'] != ''){
+				$where.= " and id_list=".$_GET['id_list'] ;
+			}
+			if($_GET['id_cat'] != ''){
+				$where.= " and id_cat=".$_GET['id_cat'] ;
+			}
+			$this->connect->query('select * from product '.$where.' order by id desc');
+			$allProduct = $this->connect->result_array();
+			$soluong = $this->getPage(count($allProduct));
+			$limit = 'limit '.$soluong['page'].',10';
+			$this->connect->query('select * from product '.$where.'  order by id desc '.$limit.'');
+			return [
+					'product' => $this->connect->result_array(),
+					'page' => $soluong['sum']
+			];
+		}
+		public function deleteProduct($table,$id){
+            $this->connect->deleteData($table,$id);
+			return true;
+		}
 		public function editProduct($table,$where){
             $this->connect->query('select * from '.$table.' where 1=1 and '.$where.'');
 			return $this->connect->fetch_array();
@@ -132,7 +184,6 @@
 			return false;
 		}
 		public function upload_image($file, $extension, $folder, $newname=''){
-			var_dump($file);
 			if(isset($_FILES[$file]) && !$_FILES[$file]['error']){
 		
 				$ext = end(explode('.',$_FILES[$file]['name']));

@@ -1,6 +1,7 @@
 <header id="header" class="mw-1000">
     <div class="header-top">
-        <span class="htop-font"><a href="">Đăng nhập</a></span> | <span class="htop-font"><a href="">Gia nhập thành viên</a></span><span class="htop-font"> | <a href="">My Page</a> | </span><span class="htop-font"><a href="">Chăm sóc khách hàng</a></span>
+        <span class="htop-font">
+        <?=(!isset($_SESSION['user']))? "<a href='dang-nhap'>Đăng nhập</a></span> | <span class='htop-font'><a href='dang-ky'>Gia nhập thành viên</a></span> <span class='htop-font'> | <a href=''>My Page</a> | </span>" : "<a href='dang-xuat'>Đăng Xuất</a></span> | <span class='htop-font'><a href='thong-tin'>Chào Bạn</a></span> <span class='htop-font'> | <a href='mat-khau'>Đổi password</a> | </span>"?><span class="htop-font"><a href="cham-soc-khach-hang.html">Chăm sóc khách hàng</a></span>
     </div>
     <div class="header-bottom">
         <div class="hbottom-left">

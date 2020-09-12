@@ -11,16 +11,11 @@ include_once "../model/productajax.php";
             ];
             
         }
-        public function catajax(){
+        public function xoaimg(){
             $product = new productajax();
             $id = addslashes($_GET['id']);
-            $id_cat = addslashes($_GET['id_cat']);
-            $datacat = $product->itemId($id,$id_cat);
-            return[
-                'datacat' => $datacat,
-                'view' => 'productajax'
-            ];
-            
+            $table = addslashes($_GET['table']);
+            $product->xoaIamge($table, "id=".$id);
         }
     }
 ?>

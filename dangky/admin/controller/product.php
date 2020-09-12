@@ -18,32 +18,6 @@ include_once "./model/product.php";
                 'view' => 'list_detail'
             ];
         }
-        public function editCat(){
-            $product = new product();
-            $id = addslashes($_GET['id']);
-            $data = $product->editProductList('product_cat',"id=".$id);
-            $list = $product->listProduct();
-            return[
-                'data' => $data,
-                'list' => $list,
-                'view' => 'cat_detail'
-            ];
-        }
-        public function editItem(){
-            $product = new product();
-            $id = addslashes($_GET['id']);
-            $data = $product->editProductList('product_item',"id=".$id);
-            $list = $product->listProduct();
-            if($data['id_list']){
-                $id_cat = $product->catId($data['id_list']);
-            }
-            return[
-                'data' => $data,
-                'list' => $list,
-                'id_cat' => $id_cat,
-                'view' => 'item_detail'
-            ];
-        }
         public function insertlist(){
             $product = new product();
             if(!empty($_POST)){
@@ -62,6 +36,43 @@ include_once "./model/product.php";
                 ];
             }
         }
+        public function updatelist(){
+            $product = new product();
+            $id = addslashes($_POST['id']);      
+            if($_FILES['img']['name']){
+                $name = $product->images_name($_FILES['img']['name']);
+                $img = $product->upload_image('img','jpg|png|gif|JPG|jpeg|JPEG','../img/',$name);
+                $dataupdate["img"]= $img;
+            }
+            $dataupdate['ten']=addslashes($_POST['ten']);
+            $dataupdate["tenkhongdau"] = $product->changeTitle(addslashes($_POST['ten']));
+            $where = "id = ".$id;
+            $update = $product->updateProduct("product_list",$dataupdate,$where);
+            $data = $product->editProduct('product_list',"id=".$id);
+            return[
+                'data' => $data,
+                'view' => 'list_detail'
+            ];
+        }
+        public function allcat(){
+            $product = new product();
+            $data = $product->catProduct();
+            return[
+                'data' => $data,
+                'view' => 'product_cat'
+            ];
+        }
+        public function editCat(){
+            $product = new product();
+            $id = addslashes($_GET['id']);
+            $data = $product->editProductList('product_cat',"id=".$id);
+            $list = $product->dsList();
+            return[
+                'data' => $data,
+                'list' => $list['product'],
+                'view' => 'cat_detail'
+            ];
+        }
         public function insertCat(){
             $product = new product();
             if(!empty($_POST)){
@@ -71,28 +82,62 @@ include_once "./model/product.php";
                 $update = $product->inserProduct("product_cat",$dataupdate);
                 header('Location:http://'._config_url.'/index.php?controller=product&action=editCat&id='.$update);
             }else{
-                $list = $product->listProduct();
+                $list = $product->dsList();
                 return[
-                    'list' => $list,
+                    'list' => $list['product'],
                     'view' => 'cat_insert'
                 ];
             }
         }
-        public function insertItem(){
+        public function updateCat(){
             $product = new product();
-            if(!empty($_POST)){
-                $dataupdate['id_list']=addslashes($_POST['id_list']);
-                $dataupdate['id_cat']=addslashes($_POST['id_cat']);
-                $dataupdate['ten']=addslashes($_POST['ten']);
-                $dataupdate["tenkhongdau"] = $product->changeTitle(addslashes($_POST['ten']));
-                $update = $product->inserProduct("product_item",$dataupdate);
-                header('Location:http://'._config_url.'/index.php?controller=product&action=editItem&id='.$update);
-            }else{
-                $list = $product->listProduct();
+            $id = addslashes($_POST['id']); 
+            $dataupdate['ten']=addslashes($_POST['ten']);
+            $dataupdate["tenkhongdau"] = $product->changeTitle(addslashes($_POST['ten']));
+            $dataupdate["id_list"] = addslashes($_POST['id_list']);
+            $where = "id = ".$id;
+            $update = $product->updateProduct("product_cat",$dataupdate,$where);
+            $data = $product->editProduct('product_cat',"id=".$id);
+            $list = $product->dsList();
+            return[
+                'data' => $data,
+                'list' => $list['product'],
+                'view' => 'cat_detail'
+            ];
+        }
+        public function allproduct(){
+            $product = new product();
+            $data = $product->allProduct();
+            $list = $product->dsList();
+            if($_GET['id_list']){
+                $id_cat = $product->catId($_GET['id_list']);
+            }
+            return[
+                'list' => $list['product'],
+                'id_cat' => $id_cat,
+                'data' => $data,
+                'view' => 'product'
+            ];
+        }
+        public function edit(){
+            $product = new product();
+            $id = addslashes($_GET['id']);
+            $data = $product->editProduct('product',"id=".$id);
+            if($data['id_list']){
+                $id_cat = $product->catId($data['id_list']);
+            }
+            $ds_photo = $product->editImage("id_product=".$_GET['id']);
+            $list = $product->dsList();
+            if($data){
                 return[
-                    'list' => $list,
-                    'view' => 'item_insert'
+                    'data' => $data,
+                    'id_cat' => $id_cat,
+                    'ds_photo' => $ds_photo,
+                    'list' => $list['product'],
+                    'view' => 'product_edit'
                 ];
+            }else{
+                header('Location:http://'._config_url.'');
             }
         }
         public function insert(){
@@ -107,7 +152,6 @@ include_once "./model/product.php";
             $dataupdate['ten']=addslashes($_POST['ten']);
             $dataupdate["id_list"] = addslashes($_POST['id_list']);
             $dataupdate["id_cat"] = addslashes($_POST['id_cat']);
-            $dataupdate["id_item"] = addslashes($_POST['id_item']);
             $dataupdate["gia"] = addslashes($_POST['gia']);
             $dataupdate["mota"] = addslashes($_POST['mota']);
             $dataupdate["noidung"] = addslashes($_POST['noidung']);
@@ -135,116 +179,11 @@ include_once "./model/product.php";
                 header('Location:http://'._config_url.'/index.php?controller=product&action=edit&id='.$id); 
             }
             }else{
-                $list = $product->listProduct();
+                $list = $product->dsList();
                 return[
-                    'list' => $list,
+                    'list' => $list['product'],
                     'view' => 'product_insert'
                 ];
-            }
-        }
-        public function updatelist(){
-            $product = new product();
-            $id = addslashes($_POST['id']);      
-            if($_FILES['img']['name']){
-                $name = $product->images_name($_FILES['img']['name']);
-                $img = $product->upload_image('img','jpg|png|gif|JPG|jpeg|JPEG','../img/',$name);
-                $dataupdate["img"]= $img;
-            }
-            $dataupdate['ten']=addslashes($_POST['ten']);
-            $dataupdate["tenkhongdau"] = $product->changeTitle(addslashes($_POST['ten']));
-            $where = "id = ".$id;
-            $update = $product->updateProduct("product_list",$dataupdate,$where);
-            $data = $product->editProduct('product_list',"id=".$id);
-            return[
-                'data' => $data,
-                'view' => 'list_detail'
-            ];
-        }
-        public function updateCat(){
-            $product = new product();
-            $id = addslashes($_POST['id']); 
-            $dataupdate['ten']=addslashes($_POST['ten']);
-            $dataupdate["tenkhongdau"] = $product->changeTitle(addslashes($_POST['ten']));
-            $dataupdate["id_list"] = addslashes($_POST['id_list']);
-            $where = "id = ".$id;
-            $update = $product->updateProduct("product_cat",$dataupdate,$where);
-            $data = $product->editProduct('product_cat',"id=".$id);
-            $list = $product->listProduct();
-            return[
-                'data' => $data,
-                'list' => $list,
-                'view' => 'cat_detail'
-            ];
-        }
-        public function updateItem(){
-            $product = new product();
-            $id = addslashes($_POST['id']); 
-            $dataupdate['ten']=addslashes($_POST['ten']);
-            $dataupdate["tenkhongdau"] = $product->changeTitle(addslashes($_POST['ten']));
-            $dataupdate["id_list"] = addslashes($_POST['id_list']);
-            $dataupdate["id_cat"] = addslashes($_POST['id_cat']);
-            $where = "id = ".$id;
-            $update = $product->updateProduct("product_cat",$dataupdate,$where);
-            $data = $product->editProduct('product_cat',"id=".$id);
-            $list = $product->listProduct();
-            if($data['id_list']){
-                $id_cat = $product->catId($data['id_list']);
-            }
-            return[
-                'data' => $data,
-                'list' => $list,
-                'id_cat' => $id_cat,
-                'view' => 'item_detail'
-            ];
-        }
-        public function allcat(){
-            $product = new product();
-            $data = $product->catProduct();
-            return[
-                'data' => $data,
-                'view' => 'product_cat'
-            ];
-        }
-        public function allitem(){
-            $product = new product();
-            $data = $product->itemProduct();
-            return[
-                'data' => $data,
-                'view' => 'product_item'
-            ];
-        }
-        public function allproduct(){
-            $product = new product();
-            $data = $product->allProduct();
-            return[
-                    'data' => $data,
-                    'view' => 'product'
-            ];
-            
-        }
-        public function edit(){
-            $product = new product();
-            $id = addslashes($_GET['id']);
-            $data = $product->editProduct('product',"id=".$id);
-            if($data['id_list']){
-                $id_cat = $product->catId($data['id_list']);
-            }
-            if($data['id_list'] && $data['id_cat']){
-                $id_item = $product->itemId($data['id_list'],$data['id_cat']);
-            }
-            $ds_photo = $product->editImage("id_product=".$_GET['id']);
-            $list = $product->listProduct();
-            if($data){
-                return[
-                    'data' => $data,
-                    'id_cat' => $id_cat,
-                    'id_item' => $id_item,
-                    'ds_photo' => $ds_photo,
-                    'list' => $list,
-                    'view' => 'product_edit'
-                ];
-            }else{
-                header('Location:http://'._config_url.'');
             }
         }
         public function update(){
@@ -259,7 +198,6 @@ include_once "./model/product.php";
             $dataupdate['ten']=addslashes($_POST['ten']);
             $dataupdate["id_list"] = addslashes($_POST['id_list']);
             $dataupdate["id_cat"] = addslashes($_POST['id_cat']);
-            $dataupdate["id_item"] = addslashes($_POST['id_item']);
             $dataupdate["gia"] = addslashes($_POST['gia']);
             $dataupdate["mota"] = addslashes($_POST['mota']);
             $dataupdate["noidung"] = addslashes($_POST['noidung']);
@@ -288,10 +226,7 @@ include_once "./model/product.php";
             }
             $data = $product->editProduct('product',"id=".$id);
             if($update){
-                return[
-                    'data' => $data,
-                    'view' => 'product_edit'
-                ];
+                header('Location:http://'._config_url.'/index.php?controller=product&action=edit&id='.$id);
             }else{
                 return[
                     'data' => $data,
@@ -310,12 +245,6 @@ include_once "./model/product.php";
             $id = addslashes($_GET['id']);
             $data = $product->deleteProduct('product_cat',"id=".$id);
             header('Location:http://'._config_url.'/index.php?controller=product&action=allcat');
-        }
-        public function deleteItem(){
-            $product = new product();
-            $id = addslashes($_GET['id']);
-            $data = $product->deleteProduct('product_item',"id=".$id);
-            header('Location:http://'._config_url.'/index.php?controller=product&action=allitem');
         }
         public function delete(){
             $product = new product();

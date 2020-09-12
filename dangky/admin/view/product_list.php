@@ -1,3 +1,11 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$('.timkiem button').click(function(event) {
+            var keyword = $('#keyword').val();
+			window.location.href="index.php?controller=product&action=alllist&keyword="+keyword;
+        });
+});      
+</script>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row" >
@@ -7,6 +15,16 @@
                 </h1>
                 <a href="index.php?controller=product&action=insertlist" style="background: green;color: #fff;padding: 10px;text-decoration: none;">Thêm mới</a>
             </div>
+            <div class="input-group custom-search-form" style="padding:10px">
+                <div class="timkiem input-group custom-search-form">
+                    <input type="text" id="keyword" class="form-control" placeholder="Search..." value="">
+                    <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                    </span>
+                </div>
+                </div>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
@@ -19,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data['data'] as $key => $value){?>
+                    <?php foreach($data['data']['product'] as $key => $value){?>
                     <tr class="odd gradeX" align="center">
                         <td><?=$key + 1?></td>
                         <td><?=$value['ten']?></td>
@@ -33,5 +51,26 @@
         </div>
         <!-- /.row -->
     </div>
+    <?php if(count($data['data']['page']) > 0 && count($data['data']['product']) > 0){?>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination t-center">
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?controller=product&action=alllist&page=<?=($_GET['page'] > 1) ? $_GET['page']-1 : '1'?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                <?php for($i = 1;$i < $data['data']['page']+1;$i++){?>
+                    <li class="page-item" ><a class="page-link <?=($_GET['page'] == $i)? 'acti': ''?>" href="index.php?controller=product&action=alllist&page=<?=$i?>"><?php echo $i;?></a></li>
+                 <?php }?>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?controller=product&action=alllist&page=<?=($_GET['page'] >= 1 && $_GET['page'] + 1 <= $data['data']['page']) ? $_GET['page']+ 1 : '1'?>" aria-label="Previous">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                </li>
+                </ul>
+            </nav>
+        <?php }?>
     <!-- /.container-fluid -->
 </div>

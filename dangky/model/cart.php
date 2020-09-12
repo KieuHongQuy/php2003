@@ -39,7 +39,7 @@
         }
         public function getThanhtoan() {
             if(!empty($_POST)){
-                include_once "./phpMailer/class.phpmailer.php";	
+                include "./phpMailer/class.phpmailer.php";	
                 $mahoadon = $this->getMahoadon();
                 $data = [
                     "hoten" => addslashes($_POST['hoten']),
@@ -70,7 +70,7 @@
                 $mail->Username   = 'kieuhongquy.itpk@gmail.com';
                 $mail->Password   = '0918680255Quy';  
                 $mail->SetFrom('kieuhongquy.itpk@gmail.com','quy');
-                $mail->AddAddress('abc@gmail.com','nguoinhan');
+                $mail->AddAddress(addslashes($_POST['email']),'nguoinhan');
                 $mail->Subject    = "[Đơn hàng]";
                 $mail->IsHTML(true);
                 $mail->CharSet = "utf-8";

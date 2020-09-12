@@ -25,19 +25,10 @@
                             <div class="formx">
                             <div class="form-group">
                                 <label>Danh mục cấp 2</label>
-                                <select id="id_cat" class="conso form-control" name="id_cat" onchange="onchangecat()">
+                                <select id="id_cat" class="conso form-control" name="id_cat">
                                     <option value="0">Danh mục cấp 2</option>
                                     <?php foreach($data['id_cat'] as $val){?>
                                         <option value="<?=$val['id']?>" <?=($val['id']==$data['data']['id_cat'])? 'selected': ""?>><?=$val['ten']?></option>
-                                    <?php }?>
-                                </select>
-                            </div>
-                            <div class="form-group" id="id_item">
-                                <label>Danh mục cấp 3</label>
-                                <select id="id_item" class="conso form-control" name="id_item">
-                                    <option value="0">Danh mục cấp 3</option>
-                                    <?php foreach($data['id_item'] as $val){?>
-                                        <option value="<?=$val['id']?>" <?=($val['id']==$data['data']['id_item'])? 'selected': ""?>><?=$val['ten']?></option>
                                     <?php }?>
                                 </select>
                             </div>

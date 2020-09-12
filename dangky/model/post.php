@@ -17,7 +17,7 @@
             return $this->conn->result_array();
         }
         public function getMenu(){
-            $this->conn->query('select list.tenkhongdau as tkdlist,cat.tenkhongdau as tkdcat,item.tenkhongdau as tkditem,list.id as id_list,list.ten as tenlist , cat.ten as tencat ,cat.id as id_cat ,item.id as id_item,item.ten as tenitem from product_list as list left join product_cat as cat on list.id = cat.id_list left join product_item as item on list.id = item.id_list');
+            $this->conn->query('select list.tenkhongdau as tkdlist,cat.tenkhongdau as tkdcat,list.id as id_list,list.ten as tenlist , cat.ten as tencat ,cat.id as id_cat  from product_list as list left join product_cat as cat on list.id = cat.id_list');
             return $this->conn->result_array();
         }
     }
