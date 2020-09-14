@@ -64,8 +64,30 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a class="<?=($_GET['controller'] == 'post')? 'action':''?>" href="index.php?controller=post&action=edit"><i class="fa fa-cube fa-fw"></i> Thông tin công ty<span class="fa arrow"></span></a>
-                    <!-- /.nav-second-level -->
+                    <a class="<?=($_GET['controller'] == 'post')? 'action':''?>" href="#"><i class="fa fa-cube fa-fw"></i> Thông tin công ty<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='gioi-thieu')? 'action':''?>" href="index.php?controller=post&action=edit&type=gioi-thieu">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='dieu-khoan')? 'action':''?>" href="index.php?controller=post&action=edit&type=dieu-khoan">Điều khoản</a>
+                        </li>
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='chinh-sach')? 'action':''?>" href="index.php?controller=post&action=edit&type=chinh-sach">Chính sách xử lý thông tin</a>
+                        </li>
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='tu-choi-thu-rac')? 'action':''?>" href="index.php?controller=post&action=edit&type=tu-choi-thu-rac">Từ chối thư rác</a>
+                        </li>
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='cham-soc-khach-hang')? 'action':''?>" href="index.php?controller=post&action=edit&type=cham-soc-khach-hang">Chăm sóc khách hàng</a>
+                        </li>
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='so-do')? 'action':''?>" href="index.php?controller=post&action=edit&type=so-do">Sơ đồ</a>
+                        </li>
+                        <li>
+                            <a class="<?=($_GET['controller'] == 'post' && $_GET['type']=='slider')? 'action':''?>" href="index.php?controller=post&action=edit&type=slider">Slider và logo</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a class="<?=($_GET['controller'] == 'user')? 'action':''?>" href="index.php?controller=user&action=alluser"><i class="fa fa-cube fa-fw"></i> Danh sách username<span class="fa arrow"></span></a>

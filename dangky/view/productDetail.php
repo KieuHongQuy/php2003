@@ -74,10 +74,10 @@
             </div>
             <div class="pdetail-right-bottom">
                 <span class="right-top-sl">Số lượng:</span> 
-                <input type="text" name="soluong" value="1" id="soluong">
+                <input type="text" name="soluong" value="1" id="soluong" onblur="kiemtraSo()">
                 <div class="pdetail-right-num">
-                    <span><img src="img/btn_amount_up.png"></span>
-                    <span><img src="img/btn_amount_down.png"></span>
+                    <span class="plus_giohang"><img src="img/btn_amount_up.png" ></span>
+                    <span  class="minus_giohang"><img src="img/btn_amount_down.png"></span>
                     
                 </div>
             </div>

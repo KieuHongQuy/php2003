@@ -571,6 +571,7 @@ body{
                     .pdetail-right-bottom{
                         display: flex;
                         align-items: center;
+                        padding-bottom:15px;
                         .right-top-sl{
                             font-size:11px;
                             padding-right: 50px;
@@ -586,8 +587,10 @@ body{
                         .pdetail-right-num{
                             padding-left: 10px;
                             span:nth-child(1){
-                                display: block;
-                                height: 10px;
+                                margin-bottom:5px;
+                            }
+                            .plus_giohang,.minus_giohang{
+                                display: flex;
                             }
                         }
                     }
@@ -966,6 +969,12 @@ body{
                     }
                 }
             }
+            .hiddenImg{
+                display: none;
+            }
+            .fontcart{
+                font-size:13px;
+            }
         }
     }
 }
@@ -1120,6 +1129,12 @@ body{
                         }
                     }
                 }
+            }
+            .fontcart{
+                font-size:10px;
+            }
+            .nonecart{
+                display: none;
             }
         }
     }  

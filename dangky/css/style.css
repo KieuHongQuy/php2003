@@ -689,6 +689,7 @@ body #wrap #index-main .pdetail-main .pdetail-main-right .pdetail-right-bottom {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-bottom: 15px;
 }
 
 body #wrap #index-main .pdetail-main .pdetail-main-right .pdetail-right-bottom .right-top-sl {
@@ -710,8 +711,13 @@ body #wrap #index-main .pdetail-main .pdetail-main-right .pdetail-right-bottom .
 }
 
 body #wrap #index-main .pdetail-main .pdetail-main-right .pdetail-right-bottom .pdetail-right-num span:nth-child(1) {
-  display: block;
-  height: 10px;
+  margin-bottom: 5px;
+}
+
+body #wrap #index-main .pdetail-main .pdetail-main-right .pdetail-right-bottom .pdetail-right-num .plus_giohang, body #wrap #index-main .pdetail-main .pdetail-main-right .pdetail-right-bottom .pdetail-right-num .minus_giohang {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 body #wrap #index-main .pdetail-main .pdetail-main-right .btn-main,
@@ -1158,6 +1164,12 @@ body #wrap .pdOmail .row-total .totai-row span:nth-child(2) {
     font-size: 12px;
     padding: 5px 30px;
   }
+  body #wrap .hiddenImg {
+    display: none;
+  }
+  body #wrap .fontcart {
+    font-size: 13px;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -1266,6 +1278,12 @@ body #wrap .pdOmail .row-total .totai-row span:nth-child(2) {
   }
   body #wrap #index-main .pdetail-main .pdetail-main-left .images_galley {
     width: calc(100% - 130px);
+  }
+  body #wrap .fontcart {
+    font-size: 10px;
+  }
+  body #wrap .nonecart {
+    display: none;
   }
 }
 /*# sourceMappingURL=style.css.map */

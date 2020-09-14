@@ -65,7 +65,7 @@
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
-            <?php if(count($data['data']) < 0){?>
+            <?php if(count($data['data']) > 0){?>
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">

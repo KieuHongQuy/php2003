@@ -12,7 +12,7 @@
         <?=$data['data']['ten']?>
     </div>
     <hr style="margin:8px 0px 5px;">
-    <div class="pdProduct">
+    <div class="postConnect">
         <?=$data['data']['noidung']?>
     </div>
 </section>

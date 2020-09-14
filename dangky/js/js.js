@@ -1,3 +1,25 @@
+function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+function validatePhone($phone) {
+    var filter = /^[0-9-+]{10,11}$/;
+    return filter.test($phone);
+}
+function validateNumber($phone) {
+  var filter = /^[0-9]+$/;
+  return filter.test($phone);
+}
+function kiemtraSo() {
+  var sl = $('#soluong').val();
+  if(!validateNumber(sl)){
+    alert('Đây không phải là số');
+    $('#soluong').val(1);
+    return false;
+  }else{
+    return true;
+  }
+}
 function addCart(id,sl,st,controller){
   $.ajax({
     url: 'ajax/add_giohang.php',
@@ -27,10 +49,14 @@ function addCart(id,sl,st,controller){
             window.location.href = 'cart';
         }
     }
-  })
+  });
 }
 function cartNew(id,sl){
   var controller = 'newCart' ;
+  if(!validateNumber(sl)){
+    alert('Đây không phải là số');
+    return false;
+  }else{
   $.ajax({
     url: 'ajax/add_giohang.php',
     type: 'GET',
@@ -38,11 +64,11 @@ function cartNew(id,sl){
     dataType: 'json',
     success: function(data){
       console.log(data); 
-      
       $('.tong'+id).html(data.tong);
       $('#cartSum').html(data.tongtien);
     }
-  })
+  });
+}
 }
 function connectProduct(id,vt,tt,controller){
   for(i=1;i<5;i++){
@@ -63,14 +89,7 @@ function connectProduct(id,vt,tt,controller){
   })
 }
 
-function validateEmail($email) {
-  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-  return emailReg.test( $email );
-}
-function validatePhone($phone) {
-    var filter = /^[0-9-+]{10,11}$/;
-    return filter.test($phone);
-}
+
 $(document).ready(function(){
   $('#menu-mobile').mmenu();
   $(".toggle-menu").click(function(){
@@ -265,7 +284,18 @@ $(document).ready(function(){
 			return false;
 		}
   });
-  
+  $('.minus_giohang').click(function(){
+    var number_giohang= $('#soluong').val();
+    if(number_giohang>1){
+      var number_change = parseInt(number_giohang)-1;
+      $('#soluong').val(number_change);
+    }
+  });
+  $('.plus_giohang').click(function(){
+     var number_giohang = $('#soluong').val();
+      var number_change = parseInt(number_giohang)+1;
+      $('#soluong').val(number_change);
+  });
   $('#btn-thongtin').click(function() {
 		var error = true;
     var dienthoai = $('#dienthoai').val();

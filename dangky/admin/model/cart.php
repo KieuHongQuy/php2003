@@ -9,7 +9,7 @@
 			return $this->connect->fetch_array();
 		}
         public function detailCart($id){
-            $this->connect->query('select * from cart where id_order = "'.$id.'"');
+			$this->connect->query('select * from cart where id_order = "'.$id.'"');
 			return $this->connect->result_array();
         }
         public function updateOrder($table,$data,$where){

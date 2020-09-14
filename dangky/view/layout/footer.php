@@ -1,4 +1,4 @@
-<hr/>
+<hr/ style="clear:both">
 <footer id="footer">
     <div class="footer-top mw-1000">
         <ul>
