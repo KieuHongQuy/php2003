@@ -11,7 +11,7 @@
             $password = addslashes($_POST['password']);
             $login = $user->loginUser($username,$password);
             if($login == true || $_SESSION['user']){
-                header('Location: http://'._config_url.'/thong-tin');
+                header('Location: http://'._config_url.'');
             }else{
                 if(isset($_POST['submit'])){
                     return[
